@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('include/head'); %>
+  </head>
+  <body>
+    <%- include('include/header'); %>
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col">
+          <h2>Request Sent</h2>
+
+          <p>
+            Your request has been submitted. Please allow up to a week for
+            processing by our staff.
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h3>Summary of your request:</h3>
+
+          <h4><%= mail.subject %></h4>
+
+          <p>
+            <strong>Name:</strong> <%= mail.body.name %><br />
+            <strong>Email:</strong> <%= mail.body.email %><br />
+            <strong>UCD-ID:</strong> <%= mail.body.ucdid %><br />
+            <strong>Status:</strong> <%= mail.body.status %><br />
+            <strong>Dept.:</strong> <%= mail.body.dept %><br />
+            <strong>Phone:</strong> <%= mail.body.phone %><br />
+            <strong>Type:</strong> <%= mail.body.type %><br />
+            <% if (mail.body.carrel != '') { %>
+            <strong>Carrel:</strong> <%= mail.body.carrel %><br />
+            <% }; %>
+            <strong>Date:</strong> <%= mail.body.date %><br />
+            <% if (mail.body.sharing != '') { %>
+            <strong>Sharing with:</strong> <%= mail.body.sharing %><br />
+            <% }; if (mail.body.comments != '') { %>
+            <strong>Comments:</strong> <%= mail.body.comments %><br />
+            <% }; %>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <hr />
+          <h2>Reminder:</h2>
+          <h3>Faculty Studies Rules</h3>
+          <p>
+            The policy governing the use of space in the Library assigned for
+            limited periods to faculty, students, and staff has been established
+            with the approval of the Academic Senate Library Committee. The
+            controlled use of this space is essential to allow as wide a use as
+            possible of the limited number of studies and carrels.
+          </p>
+          <ol class="default">
+            <li>
+              Faculty studies are available to members of the Academic Senate
+              and to research titles of the Academic Federation. Emeriti faculty
+              are eligible for studies. Retired staff, visiting scholars, and
+              appointees "without salary" are not eligible for studies.
+            </li>
+            <li>
+              Faculty studies are assigned for research-centered projects
+              requiring use and storage of significant amounts of library
+              material. Faculty studies are not intended for use as study or
+              office space.
+            </li>
+            <li>
+              Assignments are made throughout the year, and all study
+              assignments expire June 30. If there are a reasonable number of
+              vacancies, renewals will be allowed. If a waiting list develops,
+              those who have had studies the longest will be asked to relinquish
+              their studies.
+            </li>
+            <li>
+              Assignments are made on a first-come, first-served basis with a
+              waiting list kept in chronological order.
+            </li>
+            <li>
+              Double assignments to a single study will be made if requested by
+              both parties.
+            </li>
+            <li>
+              Library materials kept in faculty studies must be checked out in
+              accordance with library regulations. Materials not checked out
+              will be removed from studies and re-shelved. Library staff
+              inspects studies regularly. Failure to comply may result in
+              forfeiture of the study.
+            </li>
+            <li>
+              The Library is not responsible for theft or damage of personal
+              materials or library materials in the studies.
+            </li>
+            <li>
+              Food, drink in un-approved containers, and smoking are not
+              permitted.
+            </li>
+            <li>
+              Calendars, posters, and similar material should not be affixed to
+              walls or doors of the faculty studies. It is a violation of safety
+              regulations to cover the window of a study in such a manner as to
+              obstruct vision.
+            </li>
+            <li>
+              Loss of keys is subject to replacement costs, plus a
+              non-refundable processing fee.
+            </li>
+            <li>Internet access will be via the wireless network.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="row">
+        <div class="container">
+          <p><a href="/">Return to Form</a></p>
+        </div>
+      </div>
+    </div>
+    <%- include('include/footer'); %>
+  </body>
+</html>

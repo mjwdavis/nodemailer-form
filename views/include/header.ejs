@@ -1,0 +1,22 @@
+<ucd-theme-header
+  site-name="UC Davis Library"
+  slogan="Shields Carrel Request Form"
+  figure-src="/views/img/book-logo.png"
+  prevent-fixed
+  is-demo
+>
+  <ucd-theme-primary-nav>
+    <ul link-text="Books" href="#">
+      <li><a href="#">Biographies</a></li>
+      <li><a href="#">Fantasy</a></li>
+      <li><a href="#">Mystery</a></li>
+    </ul>
+    <a href="#">Magazines</a>
+    <a href="#">Journals</a>
+  </ucd-theme-primary-nav>
+
+  <ucd-theme-search-popup>
+    <ucd-theme-search-form @search="e => console.log(e.detail.searchTerm)">
+    </ucd-theme-search-form>
+  </ucd-theme-search-popup>
+</ucd-theme-header>

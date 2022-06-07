@@ -1,0 +1,339 @@
+<div class="border border-warning container">
+  <form
+    id="contact-form"
+    method="POST"
+    action="/"
+    enctype="multipart/form-data"
+  >
+    <div class="bg-secondary row">
+      <div class="pt-3 col">
+        <p class="text-white">
+          Please fill out this form as completely as possible.<br />
+          (* denotes required information)
+        </p>
+      </div>
+    </div>
+    <div class="border pt-3 row">
+      <div class="col-md-4">
+        <label class="text-right form-label">Name:*</label>
+      </div>
+      <div class="col-md-3">
+        <input
+          required
+          placeholder="First Name"
+          type="text"
+          id="firstname"
+          class="form-control"
+          name="firstname"
+          onkeydown="return /[A-Za-z]/i.test(event.key)"
+        /><label class="text-muted form-label" for="firstname">First</label>
+      </div>
+      <div class="col-md-2">
+        <input
+          required
+          placeholder="M.I."
+          type="text"
+          id="middleinitial"
+          class="form-control"
+          name="middleinitial"
+          maxlength="1"
+          onkeydown="return /[A-Za-z]/i.test(event.key)"
+        /><label class="text-muted form-label" for="middleinitial"
+          >Middle Initial</label
+        >
+      </div>
+      <div class="col-md-3">
+        <input
+          required
+          placeholder="Last Name"
+          type="text"
+          id="lastname"
+          class="form-control"
+          name="lastname"
+          onkeydown="return /[A-Za-z]/i.test(event.key)"
+        /><label class="text-muted form-label" for="lastname">Last Name</label>
+      </div>
+    </div>
+    <div>
+      <div class="border pt-3 pb-2 row">
+        <div class="col-md-4">
+          <label class="form-label" for="ucdid">UCD Staff/Student ID:*</label>
+        </div>
+        <div class="col-md-8">
+          <input
+            required
+            placeholder="UCDID"
+            type="text"
+            id="ucdid"
+            class="form-control"
+            name="ucdid"
+            minlength="9"
+            maxlength="9"
+            onkeydown="return /[0-9]/i.test(event.key)"
+          /><small class="text-muted form-text"
+            >Please include all 9 digits</small
+          >
+        </div>
+      </div>
+    </div>
+    <div class="border pt-3 pb-2 row">
+      <div class="col-md-4">
+        <label class="form-label">UCD Status:*</label>
+      </div>
+      <div class="col-md-4">
+        <small class="form-text"><strong>Graduate Student</strong></small
+        ><br /><small class="text-muted form-text"
+          >Please read the
+          <a
+            href="https://forms.library.ucdavis.edu/carrels/graduate-carrel-policy.pdf"
+            target="_blank"
+            >Graduate Carrel Policy</a
+          >.</small
+        >
+        <div class="form-check">
+          <input
+            required
+            name="statusfield"
+            type="radio"
+            id="advanced"
+            class="form-check-input"
+            value="advanced"
+          /><label title="" for="advanced" class="form-check-label"
+            >Advanced to Candidacy</label
+          >
+        </div>
+        <div class="form-check">
+          <input
+            name="statusfield"
+            type="radio"
+            id="other"
+            class="form-check-input"
+            value="other"
+          /><label title="" for="other" class="form-check-label"
+            >Other PhD Candidate</label
+          >
+        </div>
+        <div class="form-check">
+          <input
+            name="statusfield"
+            type="radio"
+            id="masters-student"
+            class="form-check-input"
+            value="masters-student"
+          /><label title="" for="masters-student" class="form-check-label"
+            >Masters Student</label
+          >
+        </div>
+      </div>
+      <div class="col-md-4">
+        <small class="form-text"><strong>Faculty</strong></small
+        ><br /><small class="text-muted form-text"
+          >Please read the
+          <a
+            href="https://forms.library.ucdavis.edu/carrels/faculty-carrel-policy.pdf"
+            target="_blank"
+            >Faculty Carrel Policy</a
+          >.</small
+        >
+        <div class="form-check">
+          <input
+            name="statusfield"
+            type="radio"
+            id="senate"
+            class="form-check-input"
+            name="senate"
+          /><label title="" for="senate" class="form-check-label"
+            >Academic Senate</label
+          >
+        </div>
+        <div class="form-check">
+          <input
+            name="statusfield"
+            type="radio"
+            id="emeritus"
+            name="emeritus"
+            class="form-check-input"
+          /><label title="" for="senate" class="form-check-label"
+            >Emeritus</label
+          >
+        </div>
+        <div class="form-check">
+          <input
+            name="statusfield"
+            type="radio"
+            id="federation"
+            name="federation"
+            class="form-check-input"
+          /><label title="" for="senate" class="form-check-label"
+            >Academic Federation</label
+          >
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="border pt-3 pb-3 row">
+        <div class="col-md-4">
+          <label class="form-label" for="department">Department:*</label>
+        </div>
+        <div class="col-md-8">
+          <input
+            required
+            placeholder="Department"
+            type="text"
+            id="department"
+            class="form-control"
+            name="department"
+            onkeydown="return /[A-Za-z_ ]/i.test(event.key)"
+          />
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="border pt-3 pb-2 row">
+        <div class="col-md-4">
+          <label class="form-label" for="phone">Phone Number:*</label>
+        </div>
+        <div class="col-md-8">
+          <input
+            required
+            placeholder="Phone Number"
+            type="tel"
+            id="phone"
+            class="form-control"
+            name="phone"
+            onkeydown="checkForNumber(event)"
+          /><small class="text-muted form-text"
+            >Please include your area code</small
+          >
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="border pt-3 pb-2 row">
+        <div class="col-md-4">
+          <label class="form-label" for="email">Email address:*</label>
+        </div>
+        <div class="col-md-8">
+          <input
+            required
+            placeholder="email@ucdavis.edu"
+            type="email"
+            id="email"
+            class="form-control"
+            name="email"
+            pattern=".+@ucdavis\.edu"
+          /><small class="text-muted form-text"
+            >We'll never share your email with anyone else.</small
+          >
+        </div>
+      </div>
+    </div>
+    <div class="border pt-3 pb-2 row">
+      <div class="col-md-4">
+        <label class="form-label">Is this:*</label>
+      </div>
+      <div class="col-md-4">
+        <small class="text-muted form-text">Select one</small>
+        <div class="form-check">
+          <input
+            required
+            name="type"
+            type="radio"
+            id="new"
+            class="form-check-input"
+            value="new"
+            onclick="disableCarrel()"
+          /><label title="" for="new" class="form-check-label"
+            >New application (not currently assigned to a carrel)</label
+          >
+        </div>
+        <div class="form-check">
+          <input
+            name="type"
+            type="radio"
+            id="renewal"
+            value="renewal"
+            class="form-check-input"
+            onclick="enableCarrel()"
+          /><label title="" for="senate" class="form-check-label"
+            >Renewal of current assignment</label
+          >
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="col-md-3">
+          <input
+            disabled
+            placeholder="Carrel #"
+            type="text"
+            id="carrel"
+            class="form-control"
+            name="carrel"
+            onkeydown="return /[0-9]/i.test(event.key)"
+            maxlength="3"
+          /><label class="text-muted form-label" for="carrel">Carrel #</label>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="border pt-3 pb-2 row">
+        <div class="col-md-4">
+          <label class="form-label" for="date"
+            >Date your carrel is no longer needed:*</label
+          >
+        </div>
+        <div class="col-md-8">
+          <input
+            required
+            type="date"
+            id="date"
+            class="form-control"
+            name="date"
+          />
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="border pt-3 pb-2 row">
+        <div class="col-md-4">
+          <label class="form-label" for="sharing">Sharing:</label>
+        </div>
+        <div class="col-md-8">
+          <textarea
+            placeholder="Name of other party"
+            id="sharing"
+            class="form-control"
+            style="height: 100px"
+            name="sharing"
+          ></textarea
+          ><small class="text-muted form-text"
+            >Note: Double assignments to a single carrel can be made if
+            requested by both parties. If you are requesting a shared
+            assignment, please provide the name of the other party:</small
+          >
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="border pt-3 pb-3 row">
+        <div class="col-md-4">
+          <label class="form-label" for="comments">Additional Comments:</label>
+        </div>
+        <div class="col-md-8">
+          <textarea
+            placeholder="Additional Comments"
+            id="comments"
+            class="form-control"
+            style="height: 100px"
+            name="comments"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="border pt-3 pb-3 row">
+      <div class="text-center col">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,10 @@
+version: '2'
+services:
+  web:
+    build: .
+    command: npm run start
+    volumes:
+      - .:/app/
+      - /usr/app/node_modules
+    ports:
+      - '9999:9999'
