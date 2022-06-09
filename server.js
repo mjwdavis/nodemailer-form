@@ -83,7 +83,7 @@ app.post('/', (req, res) => {
     console.log(data);
     const mail = {
       sender: `${data.firstname} ${data.email}`,
-      to: process.env.EMAIL, // receiver email,
+      to: process.env.DESTINATIONEMAIL, // receiver email,
       text: `A Carrel Request Form was submitted on ${today} by:
 
       Name: ${data.firstname} ${data.middleinitial} ${data.lastname}
@@ -125,12 +125,14 @@ app.post('/', (req, res) => {
   });
 });
 
-// uncomment if you want CAS
+// if you want CAS
 // app.get('/', cas.bounce, function (req, res) {
+// and if you don't
 app.get('/', function (req, res) {
   res.render('index');
 });
 
+// test route if you want it
 // app.get('/test', function (req, res) {
 //   var mascots = [
 //     { name: 'Sammy', organization: 'DigitalOcean', birth_year: 2012 },
