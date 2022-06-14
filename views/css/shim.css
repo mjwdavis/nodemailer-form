@@ -3,3 +3,17 @@
   height: 1em;
   width: 1em;
 }
+.form-check-label {
+  display: inline-block;
+}
+.radio-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.radio-list li label {
+  padding-bottom: 0;
+}
+.pt-2 {
+  padding-top: 2rem;
+}

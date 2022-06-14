@@ -18,14 +18,6 @@ const phoneNumberFormatter = () => {
   inputField.value = formattedInputValue;
 };
 
-const checkForNumber = (event) => {
-  if (/[0-9]/i.test(event.key)) {
-    phoneNumberFormatter();
-  } else {
-    event.preventDefault();
-  }
-};
-
 const enableCarrel = () => {
   document.getElementById('carrel').disabled = false;
 };

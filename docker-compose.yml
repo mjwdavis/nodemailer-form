@@ -5,6 +5,5 @@ services:
     command: npm run start
     volumes:
       - .:/app/
-      - /usr/app/node_modules
     ports:
       - '9999:9999'
