@@ -33,8 +33,9 @@ app.use(
   })
 );
 
+// set cas variables
 var cas = new CASAuthentication({
-  cas_url: process.env.CAS_URL_DEV,
+  cas_url: process.env.CAS_URL,
   service_url: process.env.APP_URL,
   // cas_version: '3.0',
   // renew: false,
@@ -47,22 +48,25 @@ var cas = new CASAuthentication({
   // return_to: 'http://localhost:9999',
 });
 
-// const transporter = nodemailer.createTransport({
-//   host: 'smtp-mail.outlook.com',
-//   port: 587,
-//   auth: {
-//     user: process.env.EMAIL,
-//     pass: process.env.PASS,
-//   },
-// });
-
+// nodemailer setup
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.TRANSPORTERUSER,
-    pass: process.env.TRANSPORTERPASS,
+  host: 'smtp.lib.ucdavis.edu',
+  port: 25,
+  secure: false,
+  tls: {
+    // do not fail on invalid certs
+    rejectUnauthorized: false,
   },
 });
+
+// use this if you want to run it with gmail
+// const transporter = nodemailer.createTransport({
+//   service: 'gmail',
+//   auth: {
+//     user: process.env.TRANSPORTERUSER,
+//     pass: process.env.TRANSPORTERPASS,
+//   },
+// });
 
 // verify connection configuration
 transporter.verify(function (error, success) {
@@ -74,7 +78,7 @@ transporter.verify(function (error, success) {
 });
 
 app.post(
-  '/',
+  '/carrels',
   // sanitization & validation
   body('firstname').unescape().trim(),
   check('firstname').isAlpha().withMessage('letters only'),
@@ -114,6 +118,16 @@ app.post(
       });
       console.log(data);
       const mail = {
+        subject: `${
+          data.statusfield === 'senate' ||
+          data.statusfield === 'emeritus' ||
+          data.statusfield === 'federation'
+            ? 'Faculty'
+            : 'Graduate'
+        } Carrel Request - ${data.type} ${
+          data.carrel ? `#${data.carrel}` : ''
+        }`,
+        from: `${data.firstname} ${data.lastname} ${data.email}`,
         sender: `${data.firstname} ${data.email}`,
         to: process.env.DESTINATIONEMAIL, // receiver email,
         text: `A Carrel Request Form was submitted on ${today} by:
@@ -124,9 +138,11 @@ app.post(
       Status: ${data.statusfield}
       Dept.:  ${data.department}
       Phone:  ${data.phone}
-      ${(data.type = 'renewal'
-        ? `RENEWAL of current assignement - Carrel ${data.carrel}`
-        : `NEW Application (not currently assigned to a carrel)`)}
+      ${
+        data.carrel
+          ? `RENEWAL of current assignement - Carrel ${data.carrel}`
+          : `NEW Application (not currently assigned to a carrel)`
+      }
       No longer needed on:  ${data.date}
       ${data.sharing ? `Sharing with: ${data.sharing}` : ''}
       ${data.comments ? `Comments: ${data.comments}` : ''}`,
@@ -149,7 +165,7 @@ app.post(
           console.log(err);
           res.status(500).send('Something went wrong.');
         } else {
-          res.status(200).render('sent', {
+          res.status(200).render('carrelssent', {
             mail: mail,
           });
         }
@@ -165,20 +181,9 @@ app.get('/', function (req, res) {
   res.render('index');
 });
 
-// test route if you want it
-// app.get('/test', function (req, res) {
-//   var mascots = [
-//     { name: 'Sammy', organization: 'DigitalOcean', birth_year: 2012 },
-//     { name: 'Tux', organization: 'Linux', birth_year: 1996 },
-//     { name: 'Moby Dock', organization: 'Docker', birth_year: 2013 },
-//   ];
-//   var tagline =
-//     'No programming concept is complete without a cute animal mascot.';
-//   res.render('test', {
-//     mascots: mascots,
-//     tagline: tagline,
-//   });
-// });
+app.get('/carrels', function (req, res) {
+  res.render('carrels');
+});
 
 /*************************************************/
 // Express server listening...

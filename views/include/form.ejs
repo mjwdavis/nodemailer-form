@@ -23,7 +23,6 @@
               id="firstname"
               class="form-control"
               name="firstname"
-              pattern="[A-Za-z]"
             /><label class="text-muted form-label" for="firstname">First</label>
           </div>
           <div class="l-third">
@@ -35,7 +34,6 @@
               class="form-control"
               name="middleinitial"
               maxlength="1"
-              pattern="[A-Za-z]"
             /><label class="text-muted form-label" for="middleinitial"
               >Middle Initial</label
             >
@@ -48,7 +46,6 @@
               id="lastname"
               class="form-control"
               name="lastname"
-              pattern="[A-Za-z]"
             /><label class="text-muted form-label" for="lastname"
               >Last Name</label
             >
@@ -71,7 +68,6 @@
               name="ucdid"
               minlength="9"
               maxlength="9"
-              pattern="[0-9]"
             /><small class="text-muted form-text"
               >Please include all 9 digits</small
             >
@@ -265,7 +261,7 @@
                       type="radio"
                       id="new"
                       class="form-check-input"
-                      value="new"
+                      value="New"
                       onclick="disableCarrel()"
                     /><label title="" for="new" class="form-check-label"
                       >New application (not currently assigned to a
@@ -277,7 +273,7 @@
                       name="type"
                       type="radio"
                       id="renewal"
-                      value="renewal"
+                      value="Renewal"
                       class="form-check-input"
                       onclick="enableCarrel()"
                     /><label title="" for="senate" class="form-check-label"
@@ -296,7 +292,6 @@
                     class="form-control"
                     name="carrel"
                     maxlength="3"
-                    pattern="[0-9]"
                   /><label class="text-muted form-label" for="carrel"
                     >Carrel #</label
                   >
