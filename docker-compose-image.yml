@@ -1,0 +1,11 @@
+version: '2'
+services:
+  app:
+    image: mjwarren/nodemailer
+    #build: .
+    ports:
+      - '9999:9999'
+    volumes:
+      - nodemailer:/mjwarren/nodemailer
+volumes:
+  nodemailer:

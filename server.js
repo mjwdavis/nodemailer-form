@@ -99,10 +99,10 @@ app.post(
   check('email').isEmail().withMessage('must be email ending in @ucdavis.edu'),
   body('carrel').unescape().trim(),
   check('ucdid')
-    .isLength({ min: 3 })
-    .withMessage('must be at least 3 characters long')
-    .isNumeric()
-    .withMessage('numbers only'),
+    .isLength({ min: 4 })
+    .withMessage('must be at least 4 characters long')
+    .isAlphanumeric()
+    .withMessage('3 numbers, 1 letter, like: 999X'),
   body('date').unescape().trim(),
   check('date').isDate().withMessage('must be a valid date'),
   body('sharing').unescape().trim(),
