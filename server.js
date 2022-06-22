@@ -77,6 +77,14 @@ transporter.verify(function (error, success) {
   }
 });
 
+// carrels form
+
+app.get('/carrels', function (req, res) {
+  res.render('carrels', {
+    title: 'Shields Carrel Request Form',
+  });
+});
+
 app.post(
   '/carrels',
   // sanitization & validation
@@ -98,7 +106,7 @@ app.post(
   body('email').unescape().trim(),
   check('email').isEmail().withMessage('must be email ending in @ucdavis.edu'),
   body('carrel').unescape().trim(),
-  check('ucdid')
+  check('carrel')
     .isLength({ min: 4 })
     .withMessage('must be at least 4 characters long')
     .isAlphanumeric()
@@ -174,15 +182,82 @@ app.post(
   }
 );
 
-// if you want CAS
-app.get('/', cas.bounce, function (req, res) {
-  // and if you don't
-  // app.get('/', function (req, res) {
-  res.render('index');
+// lockers form
+
+app.get('/lockers', function (req, res) {
+  res.render('lockers', {
+    title: 'Shields Locker Request Form',
+  });
 });
 
-app.get('/carrels', function (req, res) {
-  res.render('carrels');
+app.post(
+  '/lockers',
+  // sanitization & validation
+  body('firstname').unescape().trim(),
+  check('firstname').isAlpha().withMessage('letters only'),
+  body('middleinitial').unescape().trim(),
+  check('middleinitial').isAlpha().withMessage('letters only'),
+  body('lastname').unescape().trim(),
+  check('lastname').isAlpha().withMessage('letters only'),
+  body('ucdid').unescape().trim(),
+  check('ucdid')
+    .isLength({ min: 9 })
+    .withMessage('must be at least 9 characters long')
+    .isNumeric()
+    .withMessage('numbers only'),
+  body('phone').unescape().trim(),
+  check('phone').isMobilePhone().withMessage('please enter a phone number'),
+  body('email').unescape().trim(),
+  check('email').isEmail().withMessage('must be email ending in @ucdavis.edu'),
+  body('comments').unescape().trim(),
+
+  (req, res) => {
+    let form = new multiparty.Form();
+    const today = new Date();
+    let data = {};
+    form.parse(req, function (err, fields) {
+      Object.keys(fields).forEach(function (property) {
+        data[property] = fields[property].toString();
+      });
+      console.log(data);
+      const mail = {
+        subject: `Locker Request`,
+        from: `${data.firstname} ${data.lastname} ${data.email}`,
+        sender: `${data.firstname} ${data.email}`,
+        to: `mjwarren@ucdavis.edu`, // receiver email lib-lockersandcarrels@ad3.ucdavis.edu
+        text: `A Locker Request Form was submitted on ${today} by:
+
+      Name: ${data.firstname} ${data.middleinitial} ${data.lastname}
+      Email: ${data.email}
+      Phone:  ${data.phone}
+      UCD-ID: ${data.ucdid}
+      Location: ${data.location}
+      Quarter:  ${data.quarter}
+      Waitlist:  ${data.waitlist}
+      ${data.comments ? `Comments: ${data.comments}` : ''}`,
+      };
+      transporter.sendMail(mail, (err, data) => {
+        if (err) {
+          console.log(err);
+          res.status(500).send('Something went wrong.');
+        } else {
+          res.status(200).render('lockerssent', {
+            mail: mail,
+            title: 'Locker Request Sent',
+          });
+        }
+      });
+    });
+  }
+);
+
+// if you want CAS
+// app.get('/', cas.bounce, function (req, res) {
+// and if you don't
+app.get('/', function (req, res) {
+  res.render('index', {
+    title: 'Shields Library Forms - Home',
+  });
 });
 
 /*************************************************/
