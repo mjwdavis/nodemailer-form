@@ -175,9 +175,9 @@ app.post(
 );
 
 // if you want CAS
-// app.get('/', cas.bounce, function (req, res) {
-// and if you don't
-app.get('/', function (req, res) {
+app.get('/', cas.bounce, function (req, res) {
+  // and if you don't
+  // app.get('/', function (req, res) {
   res.render('index');
 });
 
