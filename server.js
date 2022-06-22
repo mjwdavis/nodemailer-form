@@ -224,7 +224,7 @@ app.post(
         subject: `Locker Request`,
         from: `${data.firstname} ${data.lastname} ${data.email}`,
         sender: `${data.firstname} ${data.email}`,
-        to: `mjwarren@ucdavis.edu`, // receiver email lib-lockersandcarrels@ad3.ucdavis.edu
+        to: process.env.DESTINATIONEMAIL, // receiver email lib-lockersandcarrels@ad3.ucdavis.edu
         text: `A Locker Request Form was submitted on ${today} by:
 
       Name: ${data.firstname} ${data.middleinitial} ${data.lastname}
