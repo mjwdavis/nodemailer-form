@@ -79,7 +79,7 @@ transporter.verify(function (error, success) {
 
 // carrels form
 
-app.get('/carrels', function (req, res) {
+app.get('/carrels', cas.bounce, function (req, res) {
   res.render('carrels', {
     title: 'Shields Carrel Request Form',
   });
@@ -183,8 +183,7 @@ app.post(
 );
 
 // lockers form
-
-app.get('/lockers', function (req, res) {
+app.get('/lockers', cas.bounce, function (req, res) {
   res.render('lockers', {
     title: 'Shields Locker Request Form',
   });
@@ -252,9 +251,9 @@ app.post(
 );
 
 // if you want CAS
-// app.get('/', cas.bounce, function (req, res) {
-// and if you don't
-app.get('/', function (req, res) {
+app.get('/', cas.bounce, function (req, res) {
+  // and if you don't
+  // app.get('/', function (req, res) {
   res.render('index', {
     title: 'Shields Library Forms - Home',
   });

@@ -20,4 +20,5 @@
 # Production
 
 2. Install wherever you want it.
-3. Start and build app: `docker compose up -d`
+3. SCP .env file to that directory, for example `scp .env mjwarren@wpsites.library.ucdavis.edu:/opt/nodemailer-form`
+4. Start and build app: `docker compose up -d`
