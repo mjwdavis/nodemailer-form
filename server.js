@@ -250,6 +250,74 @@ app.post(
   }
 );
 
+// lockers form
+app.get('/digitalsign', function (req, res) {
+  res.render('digitalsign', {
+    title: 'Digital Sign Request Form',
+  });
+});
+
+app.post(
+  '/digitalsign',
+  // sanitization & validation
+  body('firstname').unescape().trim(),
+  check('firstname').isAlpha().withMessage('letters only'),
+  body('middleinitial').unescape().trim(),
+  check('middleinitial').isAlpha().withMessage('letters only'),
+  body('lastname').unescape().trim(),
+  check('lastname').isAlpha().withMessage('letters only'),
+  body('ucdid').unescape().trim(),
+  check('ucdid')
+    .isLength({ min: 9 })
+    .withMessage('must be at least 9 characters long')
+    .isNumeric()
+    .withMessage('numbers only'),
+  body('phone').unescape().trim(),
+  check('phone').isMobilePhone().withMessage('please enter a phone number'),
+  body('email').unescape().trim(),
+  check('email').isEmail().withMessage('must be email ending in @ucdavis.edu'),
+  body('comments').unescape().trim(),
+
+  (req, res) => {
+    let form = new multiparty.Form();
+    const today = new Date();
+    let data = {};
+    form.parse(req, function (err, fields) {
+      Object.keys(fields).forEach(function (property) {
+        data[property] = fields[property].toString();
+      });
+      console.log(data);
+      const mail = {
+        subject: `Digital Sign Request`,
+        from: `${data.firstname} ${data.lastname} ${data.email}`,
+        sender: `${data.firstname} ${data.email}`,
+        to: process.env.DESTINATIONEMAIL, // receiver email lib-lockersandcarrels@ad3.ucdavis.edu
+        text: `A Locker Request Form was submitted on ${today} by:
+
+      Name: ${data.firstname} ${data.middleinitial} ${data.lastname}
+      Email: ${data.email}
+      Phone:  ${data.phone}
+      UCD-ID: ${data.ucdid}
+      Location: ${data.location}
+      Quarter:  ${data.quarter}
+      Waitlist:  ${data.waitlist}
+      ${data.comments ? `Comments: ${data.comments}` : ''}`,
+      };
+      transporter.sendMail(mail, (err, data) => {
+        if (err) {
+          console.log(err);
+          res.status(500).send('Something went wrong.');
+        } else {
+          res.status(200).render('lockerssent', {
+            mail: mail,
+            title: 'Locker Request Sent',
+          });
+        }
+      });
+    });
+  }
+);
+
 // if you want CAS
 app.get('/', cas.bounce, function (req, res) {
   // and if you don't

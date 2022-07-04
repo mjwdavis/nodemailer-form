@@ -1,0 +1,287 @@
+<div class="l-container">
+  <form
+    id="contact-form"
+    method="POST"
+    action="/lockers"
+    enctype="multipart/form-data"
+  >
+    <fieldset>
+      <p class="text-white">
+        Please fill out this form as completely as possible.<br />
+        (* denotes required information)
+      </p>
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="text-right form-label" for="organization"
+              >Sponsoring Organization:*</label
+            >
+          </div>
+          <div class="l-second">
+            <input
+              required
+              placeholder="First Name"
+              type="text"
+              id="organization"
+              class="form-control"
+              name="organization"
+            /><label class="text-muted form-label"
+              >(Library Dept, Campus Unit, Registered Student Organization)
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="text-right form-label" for="cname"
+              >Contact Name:*</label
+            >
+          </div>
+          <div class="l-second">
+            <input
+              required
+              placeholder="First Name"
+              type="text"
+              id="cname"
+              class="form-control"
+              name="cname"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="form-label" for="email">Email:*</label>
+          </div>
+          <div class="l-second">
+            <input
+              required
+              placeholder="email@ucdavis.edu"
+              type="email"
+              id="email"
+              class="form-control"
+              name="email"
+              pattern=".+@ucdavis\.edu"
+            /><small class="text-muted form-text"
+              >This must be an @ucdavis.edu email. We'll never share your email
+              with anyone else.</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="form-label" for="phone">Phone Number:*</label>
+          </div>
+          <div class="l-second">
+            <input
+              required
+              placeholder="Phone Number"
+              type="tel"
+              id="phone"
+              class="form-control"
+              name="phone"
+              onkeydown="phoneNumberFormatter()"
+            /><small class="text-muted form-text"
+              >Please write out your full number, including your area
+              code</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="form-label">Location:*</label>
+          </div>
+          <div class="l-second">
+            <small class="text-muted form-text"
+              >Which floor would you prefer (check one):</small
+            >
+            <div class="l-2col">
+              <div class="l-first">
+                <ul class="list--reset radio-list">
+                  <li>
+                    <input
+                      required
+                      name="location"
+                      type="radio"
+                      id="secondfloor"
+                      class="form-check-input"
+                      value="Second Floor"
+                    /><label title="" for="new" class="form-check-label"
+                      >Second Floor</label
+                    >
+                  </li>
+                  <li>
+                    <input
+                      required
+                      name="location"
+                      type="radio"
+                      id="thirdfloor"
+                      class="form-check-input"
+                      value="Third Floor"
+                    /><label title="" for="new" class="form-check-label"
+                      >Third Floor</label
+                    >
+                  </li>
+                  <li>
+                    <input
+                      required
+                      name="location"
+                      type="radio"
+                      id="nopreference"
+                      class="form-check-input"
+                      value="No Preference"
+                    /><label title="" for="new" class="form-check-label"
+                      >No Preference</label
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="l-second"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="form-label">Which Quarter?:*</label>
+          </div>
+          <div class="l-second">
+            <div class="l-2col">
+              <div class="l-first">
+                <ul class="list--reset radio-list">
+                  <li>
+                    <input
+                      required
+                      name="quarter"
+                      type="radio"
+                      id="secondfloor"
+                      class="form-check-input"
+                      value="Fall"
+                    /><label title="" for="new" class="form-check-label"
+                      >Fall</label
+                    >
+                  </li>
+                  <li>
+                    <input
+                      required
+                      name="quarter"
+                      type="radio"
+                      id="thirdfloor"
+                      class="form-check-input"
+                      value="Winter"
+                    /><label title="" for="new" class="form-check-label"
+                      >Winter</label
+                    >
+                  </li>
+                  <li>
+                    <input
+                      required
+                      name="quarter"
+                      type="radio"
+                      id="nopreference"
+                      class="form-check-input"
+                      value="Spring"
+                    /><label title="" for="new" class="form-check-label"
+                      >Spring</label
+                    >
+                  </li>
+                  <li>
+                    <input
+                      required
+                      name="quarter"
+                      type="radio"
+                      id="nopreference"
+                      class="form-check-input"
+                      value="Summer"
+                    /><label title="" for="new" class="form-check-label"
+                      >Summer</label
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="l-second"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="form-label">Wait List:*</label>
+          </div>
+          <div class="l-second">
+            <small class="text-muted form-text"
+              >Do you want to be on a waiting list for next quarter if no
+              lockers are available?
+            </small>
+            <div class="l-2col">
+              <div class="l-first">
+                <ul class="list--reset radio-list">
+                  <li>
+                    <input
+                      required
+                      name="waitlist"
+                      type="radio"
+                      id="secondfloor"
+                      class="form-check-input"
+                      value="Yes"
+                    /><label title="" for="new" class="form-check-label"
+                      >Yes</label
+                    >
+                  </li>
+                  <li>
+                    <input
+                      required
+                      name="waitlist"
+                      type="radio"
+                      id="thirdfloor"
+                      class="form-check-input"
+                      value="No"
+                    /><label title="" for="new" class="form-check-label"
+                      >No</label
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="l-second"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="form-label" for="comments"
+              >Additional Comments:</label
+            >
+          </div>
+          <div class="l-second">
+            <textarea
+              placeholder="Additional Comments"
+              id="comments"
+              class="form-control"
+              style="height: 100px"
+              name="comments"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="field-container--small views-filters__submit-field">
+        <button type="submit" class="btn--primary">Submit</button>
+      </div>
+    </fieldset>
+  </form>
+</div>
