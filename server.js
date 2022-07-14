@@ -5,6 +5,7 @@ const multiparty = require('multiparty');
 var session = require('express-session');
 var CASAuthentication = require('node-cas-authentication');
 const { body, check, validationResult } = require('express-validator');
+const fileUpload = require('express-fileupload');
 
 require('dotenv').config();
 
@@ -14,6 +15,13 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 // cors
 app.use(cors({ origin: '*' }));
+
+// enable files upload
+app.use(
+  fileUpload({
+    createParentPath: true,
+  })
+);
 
 // here you set that all templates are located in `/views` directory
 app.set('views', __dirname + '/views');
@@ -260,22 +268,13 @@ app.get('/digitalsign', function (req, res) {
 app.post(
   '/digitalsign',
   // sanitization & validation
-  body('firstname').unescape().trim(),
-  check('firstname').isAlpha().withMessage('letters only'),
-  body('middleinitial').unescape().trim(),
-  check('middleinitial').isAlpha().withMessage('letters only'),
-  body('lastname').unescape().trim(),
-  check('lastname').isAlpha().withMessage('letters only'),
-  body('ucdid').unescape().trim(),
-  check('ucdid')
-    .isLength({ min: 9 })
-    .withMessage('must be at least 9 characters long')
-    .isNumeric()
-    .withMessage('numbers only'),
-  body('phone').unescape().trim(),
-  check('phone').isMobilePhone().withMessage('please enter a phone number'),
+  body('organization').unescape().trim(),
+  check('organization').isAlpha().withMessage('letters only'),
+  body('cname').unescape().trim(),
+  check('cname').isAlpha().withMessage('letters only'),
   body('email').unescape().trim(),
   check('email').isEmail().withMessage('must be email ending in @ucdavis.edu'),
+
   body('comments').unescape().trim(),
 
   (req, res) => {
@@ -289,18 +288,17 @@ app.post(
       console.log(data);
       const mail = {
         subject: `Digital Sign Request`,
-        from: `${data.firstname} ${data.lastname} ${data.email}`,
-        sender: `${data.firstname} ${data.email}`,
+        from: `${data.cname} ${data.email}`,
+        sender: `${data.cname} ${data.email}`,
         to: process.env.DESTINATIONEMAIL, // receiver email lib-lockersandcarrels@ad3.ucdavis.edu
-        text: `A Locker Request Form was submitted on ${today} by:
+        text: `A Digital Sign Request Form was submitted on ${today} by:
 
-      Name: ${data.firstname} ${data.middleinitial} ${data.lastname}
+        Sponsoring Organization: ${data.organization}
       Email: ${data.email}
-      Phone:  ${data.phone}
-      UCD-ID: ${data.ucdid}
-      Location: ${data.location}
-      Quarter:  ${data.quarter}
-      Waitlist:  ${data.waitlist}
+      Contact Name:  ${data.cname}
+      From: ${data.datebegin}
+      Through: ${data.dateend}
+      Which Library:  ${data.library}
       ${data.comments ? `Comments: ${data.comments}` : ''}`,
       };
       transporter.sendMail(mail, (err, data) => {

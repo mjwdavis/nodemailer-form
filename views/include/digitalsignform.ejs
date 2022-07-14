@@ -20,7 +20,7 @@
           <div class="l-second">
             <input
               required
-              placeholder="First Name"
+              placeholder="Sponsoring Organization"
               type="text"
               id="organization"
               class="form-control"
@@ -76,187 +76,101 @@
       <div class="field-container">
         <div class="l-2col l-2col--25-75">
           <div class="l-first">
-            <label class="form-label" for="phone">Phone Number:*</label>
+            <label class="form-label" for="phone">Display sign dates*:</label>
           </div>
           <div class="l-second">
-            <input
-              required
-              placeholder="Phone Number"
-              type="tel"
-              id="phone"
-              class="form-control"
-              name="phone"
-              onkeydown="phoneNumberFormatter()"
-            /><small class="text-muted form-text"
-              >Please write out your full number, including your area
-              code</small
+            <div class="l-2col">
+              <div class="l-first">
+                <label title="" for="datebegin" class="form-check-label"
+                  >from*:</label
+                >
+                <input
+                  required
+                  placeholder="mm/dd/yy"
+                  type="date"
+                  id="datebegin"
+                  class="form-control"
+                  name="datebegin"
+                />
+              </div>
+              <div class="l-second">
+                <label title="" for="datebegin" class="form-check-label"
+                  >through*:</label
+                >
+                <input
+                  required
+                  placeholder="mm/dd/yy"
+                  type="date"
+                  id="dateend"
+                  class="form-control"
+                  name="dateend"
+                />
+              </div>
+            </div>
+            <div>
+              Signs running longer than 4 weeks will be displayed for 1 week per
+              month.<br />
+              <input
+                required
+                name="consent"
+                type="checkbox"
+                id="consent"
+                class="form-check-input"
+                value="I agree"
+              /><label title="" for="consent" class="form-check-label"
+                >Please check this box to agree</label
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="form-label"
+              >Which Library do you wish to present your information*:</label
             >
           </div>
-        </div>
-      </div>
-
-      <div class="field-container">
-        <div class="l-2col l-2col--25-75">
-          <div class="l-first">
-            <label class="form-label">Location:*</label>
-          </div>
           <div class="l-second">
-            <small class="text-muted form-text"
-              >Which floor would you prefer (check one):</small
-            >
-            <div class="l-2col">
-              <div class="l-first">
-                <ul class="list--reset radio-list">
-                  <li>
-                    <input
-                      required
-                      name="location"
-                      type="radio"
-                      id="secondfloor"
-                      class="form-check-input"
-                      value="Second Floor"
-                    /><label title="" for="new" class="form-check-label"
-                      >Second Floor</label
-                    >
-                  </li>
-                  <li>
-                    <input
-                      required
-                      name="location"
-                      type="radio"
-                      id="thirdfloor"
-                      class="form-check-input"
-                      value="Third Floor"
-                    /><label title="" for="new" class="form-check-label"
-                      >Third Floor</label
-                    >
-                  </li>
-                  <li>
-                    <input
-                      required
-                      name="location"
-                      type="radio"
-                      id="nopreference"
-                      class="form-check-input"
-                      value="No Preference"
-                    /><label title="" for="new" class="form-check-label"
-                      >No Preference</label
-                    >
-                  </li>
-                </ul>
-              </div>
-              <div class="l-second"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="field-container">
-        <div class="l-2col l-2col--25-75">
-          <div class="l-first">
-            <label class="form-label">Which Quarter?:*</label>
-          </div>
-          <div class="l-second">
-            <div class="l-2col">
-              <div class="l-first">
-                <ul class="list--reset radio-list">
-                  <li>
-                    <input
-                      required
-                      name="quarter"
-                      type="radio"
-                      id="secondfloor"
-                      class="form-check-input"
-                      value="Fall"
-                    /><label title="" for="new" class="form-check-label"
-                      >Fall</label
-                    >
-                  </li>
-                  <li>
-                    <input
-                      required
-                      name="quarter"
-                      type="radio"
-                      id="thirdfloor"
-                      class="form-check-input"
-                      value="Winter"
-                    /><label title="" for="new" class="form-check-label"
-                      >Winter</label
-                    >
-                  </li>
-                  <li>
-                    <input
-                      required
-                      name="quarter"
-                      type="radio"
-                      id="nopreference"
-                      class="form-check-input"
-                      value="Spring"
-                    /><label title="" for="new" class="form-check-label"
-                      >Spring</label
-                    >
-                  </li>
-                  <li>
-                    <input
-                      required
-                      name="quarter"
-                      type="radio"
-                      id="nopreference"
-                      class="form-check-input"
-                      value="Summer"
-                    /><label title="" for="new" class="form-check-label"
-                      >Summer</label
-                    >
-                  </li>
-                </ul>
-              </div>
-              <div class="l-second"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="field-container">
-        <div class="l-2col l-2col--25-75">
-          <div class="l-first">
-            <label class="form-label">Wait List:*</label>
-          </div>
-          <div class="l-second">
-            <small class="text-muted form-text"
-              >Do you want to be on a waiting list for next quarter if no
-              lockers are available?
-            </small>
-            <div class="l-2col">
-              <div class="l-first">
-                <ul class="list--reset radio-list">
-                  <li>
-                    <input
-                      required
-                      name="waitlist"
-                      type="radio"
-                      id="secondfloor"
-                      class="form-check-input"
-                      value="Yes"
-                    /><label title="" for="new" class="form-check-label"
-                      >Yes</label
-                    >
-                  </li>
-                  <li>
-                    <input
-                      required
-                      name="waitlist"
-                      type="radio"
-                      id="thirdfloor"
-                      class="form-check-input"
-                      value="No"
-                    /><label title="" for="new" class="form-check-label"
-                      >No</label
-                    >
-                  </li>
-                </ul>
-              </div>
-              <div class="l-second"></div>
-            </div>
+            <ul class="list--reset radio-list">
+              <li>
+                <input
+                  required
+                  name="library"
+                  type="radio"
+                  id="shields"
+                  class="form-check-input"
+                  value="Shields Library (3 screens)"
+                /><label title="" for="new" class="form-check-label"
+                  >Shields Library (3 screens)</label
+                >
+              </li>
+              <li>
+                <input
+                  required
+                  name="library"
+                  type="radio"
+                  id="blaisdell"
+                  class="form-check-input"
+                  value="Blaisdell Medical Library, Sacramento (3 screens)"
+                /><label title="" for="new" class="form-check-label"
+                  >Blaisdell Medical Library, Sacramento (3 screens)</label
+                >
+              </li>
+              <li>
+                <input
+                  required
+                  name="library"
+                  type="radio"
+                  id="both"
+                  class="form-check-input"
+                  value="Both Shields Library and Blaisdell Medical Library"
+                /><label title="" for="new" class="form-check-label"
+                  >Both Shields Library and Blaisdell Medical Library</label
+                >
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -265,12 +179,12 @@
         <div class="l-2col l-2col--25-75">
           <div class="l-first">
             <label class="form-label" for="comments"
-              >Additional Comments:</label
+              >Questions or additional instructions:</label
             >
           </div>
           <div class="l-second">
             <textarea
-              placeholder="Additional Comments"
+              placeholder="Questions or additional instructions"
               id="comments"
               class="form-control"
               style="height: 100px"
@@ -279,9 +193,48 @@
           </div>
         </div>
       </div>
+
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="form-label" for="fileupload"
+              >File*: (20MB max per attachment)
+            </label>
+          </div>
+          <div class="l-second">
+            <input type="file" name="fileInput" class="form-control" />
+          </div>
+        </div>
+      </div>
+
       <div class="field-container--small views-filters__submit-field">
         <button type="submit" class="btn--primary">Submit</button>
       </div>
     </fieldset>
   </form>
 </div>
+
+<script>
+  const fileInput = document.querySelector('#fileInput');
+
+  const uploadFile = (file) => {
+    console.log('Uploading file...');
+    const API_ENDPOINT = 'https://upload.box.com/api/2.0/files/content';
+    const request = new XMLHttpRequest();
+    const formData = new FormData();
+
+    request.open('POST', API_ENDPOINT, true);
+    request.onreadystatechange = () => {
+      if (request.readyState === 4 && request.status === 200) {
+        console.log(request.responseText);
+      }
+    };
+    formData.append('file', file);
+    request.send(formData);
+  };
+
+  fileInput.addEventListener('change', (event) => {
+    const files = event.target.files;
+    uploadFile(files[0]);
+  });
+</script>
