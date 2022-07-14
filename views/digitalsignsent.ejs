@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('include/head'); %>
+  </head>
+  <body>
+    <%- include('include/header'); %>
+    <div class="l-container pt-2">
+      <h2><%= mail.subject %> Sent</h2>
+
+      <p>
+        Your Digital Sign Request has been submitted. Please allow up to a week
+        for processing by our staff.
+      </p>
+
+      <hr />
+
+      <h3>Summary of your request:</h3>
+
+      <h4><%= mail.subject %></h4>
+
+      <pre><%= mail.text %></pre>
+
+      <hr />
+
+      <h4>Where would you like to go now?</h4>
+      <ul>
+        <li>
+          <a href="https://www.library.ucdavis.edu/">Library Home Page</a>
+        </li>
+        <li><a href="/digitalsign">Submit another Request</a></li>
+      </ul>
+    </div>
+    <%- include('include/footer'); %>
+  </body>
+</html>

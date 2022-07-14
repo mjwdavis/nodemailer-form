@@ -1,0 +1,240 @@
+<div class="l-container">
+  <form
+    id="contact-form"
+    method="POST"
+    action="/lockers"
+    enctype="multipart/form-data"
+  >
+    <fieldset>
+      <p class="text-white">
+        Please fill out this form as completely as possible.<br />
+        (* denotes required information)
+      </p>
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="text-right form-label" for="organization"
+              >Sponsoring Organization:*</label
+            >
+          </div>
+          <div class="l-second">
+            <input
+              required
+              placeholder="Sponsoring Organization"
+              type="text"
+              id="organization"
+              class="form-control"
+              name="organization"
+            /><label class="text-muted form-label"
+              >(Library Dept, Campus Unit, Registered Student Organization)
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="text-right form-label" for="cname"
+              >Contact Name:*</label
+            >
+          </div>
+          <div class="l-second">
+            <input
+              required
+              placeholder="First Name"
+              type="text"
+              id="cname"
+              class="form-control"
+              name="cname"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="form-label" for="email">Email:*</label>
+          </div>
+          <div class="l-second">
+            <input
+              required
+              placeholder="email@ucdavis.edu"
+              type="email"
+              id="email"
+              class="form-control"
+              name="email"
+              pattern=".+@ucdavis\.edu"
+            /><small class="text-muted form-text"
+              >This must be an @ucdavis.edu email. We'll never share your email
+              with anyone else.</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="form-label" for="phone">Display sign dates*:</label>
+          </div>
+          <div class="l-second">
+            <div class="l-2col">
+              <div class="l-first">
+                <label title="" for="datebegin" class="form-check-label"
+                  >from*:</label
+                >
+                <input
+                  required
+                  placeholder="mm/dd/yy"
+                  type="date"
+                  id="datebegin"
+                  class="form-control"
+                  name="datebegin"
+                />
+              </div>
+              <div class="l-second">
+                <label title="" for="datebegin" class="form-check-label"
+                  >through*:</label
+                >
+                <input
+                  required
+                  placeholder="mm/dd/yy"
+                  type="date"
+                  id="dateend"
+                  class="form-control"
+                  name="dateend"
+                />
+              </div>
+            </div>
+            <div>
+              Signs running longer than 4 weeks will be displayed for 1 week per
+              month.<br />
+              <input
+                required
+                name="consent"
+                type="checkbox"
+                id="consent"
+                class="form-check-input"
+                value="I agree"
+              /><label title="" for="consent" class="form-check-label"
+                >Please check this box to agree</label
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="form-label"
+              >Which Library do you wish to present your information*:</label
+            >
+          </div>
+          <div class="l-second">
+            <ul class="list--reset radio-list">
+              <li>
+                <input
+                  required
+                  name="library"
+                  type="radio"
+                  id="shields"
+                  class="form-check-input"
+                  value="Shields Library (3 screens)"
+                /><label title="" for="new" class="form-check-label"
+                  >Shields Library (3 screens)</label
+                >
+              </li>
+              <li>
+                <input
+                  required
+                  name="library"
+                  type="radio"
+                  id="blaisdell"
+                  class="form-check-input"
+                  value="Blaisdell Medical Library, Sacramento (3 screens)"
+                /><label title="" for="new" class="form-check-label"
+                  >Blaisdell Medical Library, Sacramento (3 screens)</label
+                >
+              </li>
+              <li>
+                <input
+                  required
+                  name="library"
+                  type="radio"
+                  id="both"
+                  class="form-check-input"
+                  value="Both Shields Library and Blaisdell Medical Library"
+                /><label title="" for="new" class="form-check-label"
+                  >Both Shields Library and Blaisdell Medical Library</label
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="form-label" for="comments"
+              >Questions or additional instructions:</label
+            >
+          </div>
+          <div class="l-second">
+            <textarea
+              placeholder="Questions or additional instructions"
+              id="comments"
+              class="form-control"
+              style="height: 100px"
+              name="comments"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="form-label" for="fileupload"
+              >File*: (20MB max per attachment)
+            </label>
+          </div>
+          <div class="l-second">
+            <input type="file" name="fileInput" class="form-control" />
+          </div>
+        </div>
+      </div>
+
+      <div class="field-container--small views-filters__submit-field">
+        <button type="submit" class="btn--primary">Submit</button>
+      </div>
+    </fieldset>
+  </form>
+</div>
+
+<script>
+  const fileInput = document.querySelector('#fileInput');
+
+  const uploadFile = (file) => {
+    console.log('Uploading file...');
+    const API_ENDPOINT = 'https://upload.box.com/api/2.0/files/content';
+    const request = new XMLHttpRequest();
+    const formData = new FormData();
+
+    request.open('POST', API_ENDPOINT, true);
+    request.onreadystatechange = () => {
+      if (request.readyState === 4 && request.status === 200) {
+        console.log(request.responseText);
+      }
+    };
+    formData.append('file', file);
+    request.send(formData);
+  };
+
+  fileInput.addEventListener('change', (event) => {
+    const files = event.target.files;
+    uploadFile(files[0]);
+  });
+</script>
