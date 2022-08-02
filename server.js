@@ -5,7 +5,7 @@ const multiparty = require('multiparty');
 var session = require('express-session');
 var CASAuthentication = require('node-cas-authentication');
 const { body, check, validationResult } = require('express-validator');
-const fileUpload = require('express-fileupload');
+// const fileUpload = require('express-fileupload');
 
 require('dotenv').config();
 
@@ -17,11 +17,11 @@ const app = express();
 app.use(cors({ origin: '*' }));
 
 // enable files upload
-app.use(
-  fileUpload({
-    createParentPath: true,
-  })
-);
+// app.use(
+//   fileUpload({
+//     createParentPath: true,
+//   })
+// );
 
 // here you set that all templates are located in `/views` directory
 app.set('views', __dirname + '/views');
@@ -259,6 +259,139 @@ app.post(
 );
 
 // lockers form
+app.get('/dams-projects', cas.bounce, function (req, res) {
+  res.render('dams-projects', {
+    title: 'DAMS Projects Request Form',
+    // user: req.session[cas.session_name],
+  });
+});
+
+app.post(
+  '/dams-projects',
+  // sanitization & validation
+  body('champion').unescape().trim(),
+  check('champion').isAlpha().withMessage('letters only'),
+  body('copyright_other').unescape().trim(),
+  check('copyright_other').isAlpha().withMessage('letters only'),
+  body('copyright_documentation').unescape().trim(),
+  check('copyright_documentation').isAlpha().withMessage('letters only'),
+  body('copyright_special').unescape().trim(),
+  check('copyright_special').isAlpha().withMessage('letters only'),
+  body('important').unescape().trim(),
+  check('important').isAlpha().withMessage('letters only'),
+  body('digitization_status').unescape().trim(),
+  check('digitization_status').isAlpha().withMessage('letters only'),
+  body('digitization_link').unescape().trim(),
+  check('digitization_link').isAlpha().withMessage('letters only'),
+  body('collection_extent').unescape().trim(),
+  check('collection_extent').isNumeric().withMessage('numbers only'),
+  body('collection_digitized').unescape().trim(),
+  check('collection_digitized').isAlpha().withMessage('letters only'),
+  body('metadata').unescape().trim(),
+  check('metadata').isAlpha().withMessage('letters only'),
+  body('metadata_findingaid').unescape().trim(),
+  check('metadata_findingaid').isURL().withMessage('URL only'),
+  body('metadata_marc').unescape().trim(),
+  check('metadata_marc').isURL().withMessage('URL only'),
+  body('metadata_ia').unescape().trim(),
+  check('metadata_ia').isURL().withMessage('URL only'),
+  body('stakeholders_faculty').unescape().trim(),
+  check('stakeholders_faculty').isAlpha().withMessage('letters only'),
+  body('stakeholders_other').unescape().trim(),
+  check('stakeholders_other').isAlpha().withMessage('letters only'),
+  body('related').unescape().trim(),
+  check('related').isAlpha().withMessage('letters only'),
+  body('notes').unescape().trim(),
+  check('notes').isAlpha().withMessage('letters only'),
+
+  (req, res) => {
+    let form = new multiparty.Form();
+    const user = req.session[cas.session_name];
+    // const user = 'mjwarren@ucdavis.edu';
+    const today = new Date();
+    let data = {};
+    form.parse(req, function (err, fields) {
+      console.log(err);
+      Object.keys(fields).forEach(function (property) {
+        data[property] = fields[property].toString();
+      });
+      console.log(data);
+      const mail = {
+        subject: `New DAMS Potential Project for GitLab`,
+        from: `${user}@ucdavis.edu`,
+        sender: `${user}@ucdavis.edu`,
+        to: process.env.DESTINATIONEMAIL, // receiver email eanebeker@ucdavis.edu
+        text: `# Champion  
+        ${data.champion}  
+        
+        # Copyright  
+
+        ${(data.copyright = 'other' ? data.copyright_other : data.copyright)}
+        
+        ## Supporting Documentation  
+        ${data.copyright_documentation}  
+        
+        ## Special Copyright Considerations
+        ${data.copyright_special}  
+        
+        # Why is this Important?
+        ${data.important}  
+        
+        # Digitization Status
+        ${data.digitization_status}   
+        
+        ## Digitization Link
+        ${data.digitization_link}  
+        
+        # Collection Extent
+        * Number of Items: ${data.collection_extent}   
+        * Digitized Formats: ${data.collection_digitized}  
+        
+        # Metadata
+        ${data.metadata}  
+        
+        ## Finding Aid:
+        ${data.metadata_findingaid}  
+        
+        ## MARC:
+        ${data.metadata_marc}  
+        
+        ## Internet Archive:
+        ${data.metadata_ia}  
+        
+        # Stakeholders
+        
+        ## UC Davis Faculty
+        ${data.stakeholders_faculty}  
+        
+        ## Others
+        ${data.stakeholders_other}  
+        
+        # Related Collections
+        ${data.related}  
+        
+        # Additional Notes
+        ${data.notes}  
+        
+        # Submitted:
+        By ${user} ${today}`,
+      };
+      transporter.sendMail(mail, (err, data) => {
+        if (err) {
+          console.log(err);
+          res.status(500).send('Something went wrong.');
+        } else {
+          res.status(200).render('dams-sent', {
+            mail: mail,
+            title: 'DAMS Project Request Sent',
+          });
+        }
+      });
+    });
+  }
+);
+
+// lockers form
 app.get('/digitalsign', function (req, res) {
   res.render('digitalsign', {
     title: 'Digital Sign Request Form',
@@ -317,9 +450,9 @@ app.post(
 );
 
 // if you want CAS
-app.get('/', cas.bounce, function (req, res) {
-  // and if you don't
-  // app.get('/', function (req, res) {
+// app.get('/', cas.bounce, function (req, res) {
+// and if you don't
+app.get('/', function (req, res) {
   res.render('index', {
     title: 'Shields Library Forms - Home',
   });
