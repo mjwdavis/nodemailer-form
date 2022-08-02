@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('include/head'); %>
+  </head>
+  <body>
+    <%- include('include/header'); %>
+    <div class="l-container pt-2">
+      <h2><%= mail.subject %> Sent</h2>
+
+      <p>
+        Thank you for your proposal to the UC Davis Library’s Digital Asset
+        Management System. We will be in touch regarding your proposal soon.
+      </p>
+
+      <hr />
+
+      <h3>Summary of your request:</h3>
+
+      <h4><%= mail.subject %></h4>
+
+      <pre><%= mail.text %></pre>
+
+      <p><a href="/lockers">Return to Form</a></p>
+    </div>
+    <%- include('include/footer'); %>
+  </body>
+</html>

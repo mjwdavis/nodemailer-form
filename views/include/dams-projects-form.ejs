@@ -1,0 +1,544 @@
+<div class="l-container">
+  <form
+    id="contact-form"
+    method="POST"
+    action="/dams-projects"
+    enctype="multipart/form-data"
+  >
+    <fieldset>
+      <p class="text-white">
+        Please fill out this form as completely as possible.
+      </p>
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="text-right form-label" for="champion"
+              >Champion:*</label
+            >
+          </div>
+          <div class="l-second">
+            <label class="text-muted form-label"
+              >Identify the person(s) who would be willing to help develop the
+              content into a form that is ready for the DAMS.
+            </label>
+            <input
+              placeholder="Champion"
+              type="text"
+              id="champion"
+              class="form-control"
+              name="champion"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="form-label">Copyright*:</label><br />
+            <span class="text-muted form-label"
+              ><p>
+                Cornell University Library has created a copyright information
+                center that may help you determine the copyrights status of
+                items in your collection. It is available at
+                <a href="https://copyright.cornell.edu/publicdomain"
+                  >Copyright Information Center</a
+                >
+              </p>
+              <p>
+                We try to use standard copyrights from
+                <a href="http://rightsstatementy.org">rightsstatments.org</a>.
+                Please choose one of the options below, or enter the URL for an
+                alternative copyright statement:
+              </p>
+            </span>
+          </div>
+          <div class="l-second">
+            <ul class="list--reset radio-list">
+              <li>
+                <input
+                  type="radio"
+                  name="copyright"
+                  value="BAS"
+                  id="copyright_BAS"
+                  class="form-check-input"
+                /><label for="copyright_BAS">rightsstatements.org</label
+                >&nbsp;&nbsp;
+                <a
+                  target="_blank"
+                  href="http://rightsstatements.org/vocab/CNE/1.0/"
+                  >http://rightsstatements.org/vocab/CNE/1.0/</a
+                >
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="copyright"
+                  value="IC"
+                  id="copyright_IC"
+                  class="form-check-input"
+                /><label for="copyright_IC">IN COPYRIGHT</label>&nbsp;&nbsp;
+                <a
+                  target="_blank"
+                  href="http://rightsstatements.org/vocab/InC/1.0/"
+                  >http://rightsstatements.org/vocab/InC/1.0/</a
+                >
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="copyright"
+                  value="IC-OW-EU"
+                  id="copyright_ICOWEU"
+                  class="form-check-input"
+                /><label for="copyright_ICOWEU"
+                  >IN COPYRIGHT - EU ORPHAN WORK</label
+                >&nbsp;&nbsp;
+                <a
+                  target="_blank"
+                  href="http://rightsstatements.org/vocab/InC-OW-EU/1.0/"
+                  >http://rightsstatements.org/vocab/InC-OW-EU/1.0/</a
+                >
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="copyright"
+                  value="IC-EDU"
+                  id="copyright_ICEDU"
+                  class="form-check-input"
+                /><label for="copyright_ICEDU"
+                  >IN COPYRIGHT - EDUCATIONAL USE PERMITTED</label
+                >&nbsp;&nbsp;
+                <a
+                  target="_blank"
+                  href="http://rightsstatements.org/vocab/InC-EDU/1.0/"
+                  >http://rightsstatements.org/vocab/InC-EDU/1.0/</a
+                >
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="copyright"
+                  value="IC-NCUP"
+                  id="copyright_ICNCUP"
+                  class="form-check-input"
+                /><label for="copyright_ICNCUP"
+                  >IN COPYRIGHT - NON-COMMERCIAL USE PERMITTED</label
+                >&nbsp;&nbsp;
+                <a
+                  target="_blank"
+                  href="http://rightsstatements.org/vocab/InC-NC/1.0/"
+                  >http://rightsstatements.org/vocab/InC-NC/1.0/</a
+                >
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="copyright"
+                  value="IC-RUU"
+                  id="copyright_ICRUU"
+                  class="form-check-input"
+                /><label for="copyright_ICRUU"
+                  >IN COPYRIGHT - RIGHTS-HOLDER(S) UNLOCATABLE OR
+                  UNIDENTIFIABLE</label
+                >&nbsp;&nbsp;
+                <a
+                  target="_blank"
+                  href="http://rightsstatements.org/vocab/InC-RUU/1.0/"
+                  >http://rightsstatements.org/vocab/InC-RUU/1.0/</a
+                >
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="copyright"
+                  value="NC-CR"
+                  id="copyright_NCCR"
+                  class="form-check-input"
+                /><label for="copyright_NCCR"
+                  >NO COPYRIGHT - CONTRACTUAL RESTRICTIONS</label
+                >&nbsp;&nbsp;
+                <a
+                  target="_blank"
+                  href="http://rightsstatements.org/vocab/NoC-CR/1.0/"
+                  >http://rightsstatements.org/vocab/NoC-CR/1.0/</a
+                >
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="copyright"
+                  value="NC-NCUO"
+                  id="copyright_NCNCUO"
+                  class="form-check-input"
+                /><label for="copyright_NCNCUO"
+                  >NO COPYRIGHT - NON-COMMERCIAL USE ONLY</label
+                >&nbsp;&nbsp;
+                <a
+                  target="_blank"
+                  href="http://rightsstatements.org/vocab/NoC-NC/1.0/"
+                  >http://rightsstatements.org/vocab/NoC-NC/1.0/</a
+                >
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="copyright"
+                  value="NC-OKLR"
+                  id="copyright_NCOKLR"
+                  class="form-check-input"
+                /><label for="copyright_NCOKLR"
+                  >NO COPYRIGHT - OTHER KNOWN LEGAL RESTRICTIONS</label
+                >&nbsp;&nbsp;
+                <a
+                  target="_blank"
+                  href="http://rightsstatements.org/vocab/NoC-OKLR/1.0/"
+                  >http://rightsstatements.org/vocab/NoC-OKLR/1.0/</a
+                >
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="copyright"
+                  value="NC-US"
+                  id="copyright_NCUS"
+                  class="form-check-input"
+                /><label for="copyright_NCUS"
+                  >NO COPYRIGHT - UNITED STATES</label
+                >&nbsp;&nbsp;
+                <a
+                  target="_blank"
+                  href="http://rightsstatements.org/vocab/NoC-US/1.0/"
+                  >http://rightsstatements.org/vocab/NoC-US/1.0/</a
+                >
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="copyright"
+                  value="CNE"
+                  id="copyright_CNE"
+                  class="form-check-input"
+                /><label for="copyright_CNE">COPYRIGHT NOT EVALUATED</label
+                >&nbsp;&nbsp;
+                <a
+                  target="_blank"
+                  href="http://rightsstatements.org/vocab/CNE/1.0/"
+                  >http://rightsstatements.org/vocab/CNE/1.0/</a
+                >
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="copyright"
+                  value="UND"
+                  id="copyright_UND"
+                  class="form-check-input"
+                /><label for="copyright_UND">COPYRIGHT UNDETERMINED</label
+                >&nbsp;&nbsp;
+                <a
+                  target="_blank"
+                  href="http://rightsstatements.org/vocab/UND/1.0/"
+                  >http://rightsstatements.org/vocab/UND/1.0/</a
+                >
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="copyright"
+                  value="Other"
+                  id="copyright_Other"
+                  class="form-check-input"
+                /><label for="copyright_other">Other</label>&nbsp;
+                <input
+                  placeholder="Other"
+                  type="text"
+                  id="copyright_other"
+                  class="form-control"
+                  name="copyright_other"
+                />
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="text-right form-label" for="copyright_documentation"
+              >Supporting Documentation:</label
+            >
+          </div>
+          <div class="l-second">
+            <label class="text-muted form-label"
+              >Please indicate if you have supporting documentation of rights.
+              For example, deed of gift, MoU, contract, etc.
+            </label>
+            <input
+              placeholder="Supporting Documentation"
+              type="text"
+              id="copyright_documentation"
+              class="form-control"
+              name="copyright_documentation"
+            />
+            <label class="text-muted form-label" for="copyright_special"
+              >If there are special considerations regarding the copyright,
+              please add them here.
+            </label>
+            <textarea
+              placeholder="Special Considerations"
+              id="copyright_special"
+              class="form-control"
+              style="height: 100px"
+              name="copyright_special"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="text-right form-label" for="important"
+              >Why is this Important?:*</label
+            >
+          </div>
+          <div class="l-second">
+            <label class="text-muted form-label"
+              >Describe why this particular collection is especially important
+              for inclusion in the DAMS.
+            </label>
+            <textarea
+              placeholder="Why is this Important?"
+              id="important"
+              class="form-control"
+              style="height: 100px"
+              name="important"
+            ></textarea
+            ><label class="text-muted form-label"
+              ><p>
+                You may want to consider the following questions in your
+                response:
+              </p>
+              <ul class="default">
+                <li>What is the value to the University?</li>
+                <li>What is the research value and/or evidential value?</li>
+                <li>
+                  What is the potential for re-use, research by patrons/users?
+                </li>
+                <li>How unique or rare is this material?</li>
+                <li>How accessible is the material currently?</li>
+                <li>
+                  How does the material fit into our Collection Development
+                  profiles?
+                </li>
+              </ul>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="text-right form-label" for="digitization_status"
+              >Digitization Status:*</label
+            >
+          </div>
+          <div class="l-second">
+            <label class="text-muted form-label"
+              >Please describe any current digitization efforts for the project.
+            </label>
+            <textarea
+              placeholder="Digitization Status"
+              id="digitization_status"
+              class="form-control"
+              style="height: 100px"
+              name="digitization_status"
+            ></textarea>
+            <label class="text-muted form-label" for="digitization_link"
+              >If the project has already been digitized please provide a link.
+            </label>
+            <input
+              placeholder="Project Link"
+              type="text"
+              id="digitization_link"
+              class="form-control"
+              name="digitization_link"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="text-right form-label">Collection Extent :*</label>
+          </div>
+          <div class="l-second">
+            <label class="text-muted form-label" for="collection_extent"
+              >How many items are in this collection?
+            </label>
+            <input
+              placeholder="# of items"
+              type="text"
+              id="collection_extent"
+              class="form-control"
+              name="collection_extent"
+            />
+            <label class="text-muted form-label" for="collection_digitized"
+              >If already digitized, what is the disk usage? What file formats
+              will be included (e.g., jpg, mp3, etc.)?
+            </label>
+            <input
+              placeholder="Disk usage / file formats"
+              type="text"
+              id="collection_digitized"
+              class="form-control"
+              name="collection_digitized"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="text-right form-label">Metadata :*</label>
+          </div>
+          <div class="l-second">
+            <label class="text-muted form-label" for="metadata"
+              >Describe what metadata exists and at what level (e.g., collection
+              level, item level). If the metadata includes controlled
+              vocabularies, include them here. If you have plans for creating
+              more data, you can add it here as well. In addition, please
+              provide links to any existing finding aids or citation
+              information.
+            </label>
+            <textarea
+              placeholder="Metadata"
+              id="metadata"
+              class="form-control"
+              style="height: 100px"
+              name="metadata"
+            >
+            </textarea>
+            <label class="text-muted form-label" for="metadata_findingaid"
+              >Finding Aid URL:
+            </label>
+            <input
+              placeholder="Finding Aid URL"
+              type="text"
+              id="metadata_findingaid"
+              class="form-control"
+              name="metadata_findingaid"
+            />
+            <label class="text-muted form-label" for="metadata_marc"
+              >MARC URL:
+            </label>
+            <input
+              placeholder="MARC URL"
+              type="text"
+              id="metadata_marc"
+              class="form-control"
+              name="metadata_marc"
+            />
+            <label class="text-muted form-label" for="metadata_ia"
+              >Internet Archive URL:
+            </label>
+            <input
+              placeholder="Internet Archive URL"
+              type="text"
+              id="metadata_ia"
+              class="form-control"
+              name="metadata_ia"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="text-right form-label">Stakeholders:*</label>
+          </div>
+          <div class="l-second">
+            <label class="text-muted form-label" for="stakeholders_faculty"
+              >UC Davis Faculty
+            </label>
+            <input
+              placeholder="UC Davis Faculty"
+              type="text"
+              id="stakeholders_faculty"
+              class="form-control"
+              name="stakeholders_faculty"
+            />
+            <span
+              >If this collection is related in some special way to particular
+              faculty on campus, identify that here. For example, if this
+              collection could be used to describe the contributions of some
+              former faculty member, that could increase the importance of this
+              collection for our library.
+            </span>
+
+            <label class="text-muted form-label" for="stakeholders_other"
+              >Others
+            </label>
+            <input
+              placeholder="Other stakeholders"
+              type="text"
+              id="stakeholders_other"
+              class="form-control"
+              name="stakeholders_other"
+            />
+            <span>Are there other stakeholders, on or off campus?</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="form-label" for="related">Related Collections:</label>
+          </div>
+          <div class="l-second">
+            <label class="form-label text-muted"
+              >If this collection is related to any other proposed collections,
+              please identify them here.
+            </label>
+            <textarea
+              placeholder="Related Collections"
+              id="related"
+              class="form-control"
+              style="height: 100px"
+              name="related"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <div class="l-2col l-2col--25-75">
+          <div class="l-first">
+            <label class="form-label" for="notes">Additional Notes:</label>
+          </div>
+          <div class="l-second">
+            <textarea
+              placeholder="Additional Notes"
+              id="notes"
+              class="form-control"
+              style="height: 100px"
+              name="notes"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-container--small views-filters__submit-field">
+        <button type="submit" class="btn--primary">Submit</button>
+      </div>
+    </fieldset>
+  </form>
+</div>
