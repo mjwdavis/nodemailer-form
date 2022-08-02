@@ -320,7 +320,7 @@ app.post(
         subject: `New DAMS Potential Project for GitLab`,
         from: `${user}@ucdavis.edu`,
         sender: `${user}@ucdavis.edu`,
-        to: process.env.DESTINATIONEMAIL, // receiver email eanebeker@ucdavis.edu
+        to: process.env.DAMSEMAIL, // receiver email eanebeker@ucdavis.edu
         text: `# Champion  
         ${data.champion}  
         
